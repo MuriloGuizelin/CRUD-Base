@@ -12,7 +12,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 @Entity
 @Table(name = "TB_PRODUCTS")
-public class ProductModel extends RepresentationModel<ProductModel> implements Serializable{
+public class ProductEntity extends RepresentationModel<ProductEntity> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
