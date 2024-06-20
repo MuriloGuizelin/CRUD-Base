@@ -1,0 +1,18 @@
+meta {
+  name: Update
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8080/products/update/2
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "arroz",
+    "value": 202
+  }
+}
