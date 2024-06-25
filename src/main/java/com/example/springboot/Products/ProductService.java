@@ -1,8 +1,9 @@
 package com.example.springboot.Products;
 
-
 public interface ProductService {
 
-    public ProductDTO update(Long id, ProductDTO dto);
+    public ProductEntity update(Long id, ProductDTO dto);
+
+    public ProductEntity save(ProductDTO dto);
     
 }

@@ -1,5 +1,6 @@
 package com.example.springboot.Products;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,27 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public ProductDTO update(Long id, ProductDTO dto) {
+    public ProductEntity update(Long id, ProductDTO dto) {
         ProductEntity existingProduct = productRepository.findById(id)
             .orElseThrow(() -> new Exception400("Product not found"));
 
-        existingProduct.setName(dto.getName());
-        existingProduct.setValue(dto.getValue());
-
         productRepository.save(existingProduct);
 
-        return dto;
+        return existingProduct;
     }
+
+    @Override
+    public ProductEntity save(ProductDTO dto) {
+        try {
+            ProductEntity productEntity = new ProductEntity();
+            productEntity.setName(dto.getName());
+            productEntity.setValue(dto.getValue());
+            productEntity.setDate(dto.getDate());
+
+            return productRepository.save(productEntity);
+        } catch (Exception e) {
+            throw new Exception400("Failed to save product");
+        }
+    }
+
 }
