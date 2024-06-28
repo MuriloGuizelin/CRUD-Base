@@ -33,8 +33,8 @@ public class ProductController {
 
 		if(!productRepository.existsById(id)){
 			throw new Exception400("Produto não encontrado.");
-
 		}
+		
 		productRepository.deleteById(id);
 		return ResponseEntity.ok("Deletado com sucesso.");
 	}
@@ -43,6 +43,14 @@ public class ProductController {
 	public ResponseEntity<Object> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO dto){
 		
 		return ResponseEntity.ok(productService.update(id, dto));	
+	}
+
+	@GetMapping("/find/{id}")
+	public ResponseEntity<Object> findProduct(@PathVariable Long id){
+		if(!productRepository.existsById(id)){
+			throw new Exception400("Produto não encontrado.");
+		}
+		return ResponseEntity.ok(productRepository.findById(id));
 	}
 
 }
